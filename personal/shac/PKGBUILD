@@ -1,0 +1,33 @@
+# This PKGBUILD is not published to the AUR
+# Maintainer: Vladyslav Aviedov <vladaviedov at protonmail dot com>
+pkgname=shac-git
+pkgver=r21.c15143e
+pkgrel=1
+pkgdesc="Static HTML Asset Compiler (dev)"
+arch=('x86_64')
+url='https://github.com/vladaviedov/shac'
+license=('GPL-3.0-only')
+depends=()
+makedepends=('git' 'go')
+source=("${pkgname}::git+https://github.com/vladaviedov/shac.git")
+sha256sums=('SKIP')
+
+prepare() {
+	cd "${pkgname}"
+	go get
+}
+
+pkgver() {
+	cd "${pkgname}"
+	printf "r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
+}
+
+build() {
+	cd "${pkgname}"
+	make release
+}
+
+package() {
+	cd "${pkgname}"
+	PREFIX="$pkgdir/usr" make install
+}
