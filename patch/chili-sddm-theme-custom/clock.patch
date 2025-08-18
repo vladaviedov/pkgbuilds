@@ -1,0 +1,12 @@
+diff -ura --color sddm-chili-0.1.5/Main.qml sddm-chili-0.1.5-patched/Main.qml
+--- sddm-chili-0.1.5/Main.qml	2018-08-26 23:35:22.000000000 -0400
++++ sddm-chili-0.1.5-patched/Main.qml	2025-08-18 14:13:30.776880737 -0400
+@@ -84,7 +84,7 @@
+                     font.pointSize: root.generalFontSize
+                     renderType: Text.QtRendering
+                     function updateTime() {
+-                        text = new Date().toLocaleString(Qt.locale("en_US"), "ddd dd MMMM,  hh:mm A")
++                        text = new Date().toLocaleString(Qt.locale("en_US"), "ddd, dd MMM yyyy, HH:mm")
+                     }
+                 }
+                 Timer {

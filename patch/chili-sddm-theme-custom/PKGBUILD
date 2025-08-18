@@ -1,0 +1,30 @@
+# Maintainer: Ranieri Althoff <ranisalt+aur at gmail dot com>
+
+_orig_pkgname=chili-sddm-theme
+pkgname=${_orig_pkgname}-custom
+pkgver=0.1.5
+pkgrel=1
+pkgdesc='Chili theme for SDDM (with custom patches)'
+arch=('any')
+url="https://github.com/MarianArlt/sddm-chili"
+license=('GPL-3.0-Only')
+depends=(qt5-graphicaleffects qt5-quickcontrols sddm)
+install="${_orig_pkgname}.install"
+source=(
+	"${url}/archive/${pkgver}.tar.gz"
+	clock.patch
+)
+sha256sums=(
+	'a3c0607bf70f448fff0a271624e3bc15af978894c04c98355d00a57431e49a0f'
+	'5e579642da9cc4521352be01e9668ae202c9ed44325454b94ad79506eb2cec00'
+)
+
+build() {
+	cd "${srcdir}/sddm-chili-${pkgver}"
+	patch -Np1 -i ../clock.patch
+}
+
+package() {
+    mkdir -p "${pkgdir}/usr/share/sddm/themes"
+    cp -r "${srcdir}/sddm-chili-${pkgver}" "${pkgdir}/usr/share/sddm/themes/chili"
+}

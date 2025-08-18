@@ -1,0 +1,7 @@
+**/*
+!.gitignore
+!PKGBUILD
+!.SRCINFO
+!*.install
+!*.patch
+!README.md
