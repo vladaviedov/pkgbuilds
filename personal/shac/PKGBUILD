@@ -1,7 +1,7 @@
 # This PKGBUILD is not published to the AUR
 # Maintainer: Vladyslav Aviedov <vladaviedov at protonmail dot com>
 pkgname=shac-git
-pkgver=r21.c15143e
+pkgver=r22.58a9f55
 pkgrel=1
 pkgdesc="Static HTML Asset Compiler (dev)"
 arch=('x86_64')

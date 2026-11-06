@@ -1,0 +1,13 @@
+pkgbase = shac-git
+	pkgdesc = Static HTML Asset Compiler (dev)
+	pkgver = r22.58a9f55
+	pkgrel = 1
+	url = https://github.com/vladaviedov/shac
+	arch = x86_64
+	license = GPL-3.0-only
+	makedepends = git
+	makedepends = go
+	source = shac-git::git+https://github.com/vladaviedov/shac.git
+	sha256sums = SKIP
+
+pkgname = shac-git
