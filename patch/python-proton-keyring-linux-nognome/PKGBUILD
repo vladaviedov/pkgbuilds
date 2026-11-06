@@ -1,0 +1,39 @@
+# Maintainer: Vladyslav Aviedov <aur at vladaviedov dot org>
+# Contributor: Peter Jung <ptr1337@archlinux.org>
+# Contributor: Ali Molaei <ali dot molaei at protonmail dot com>
+
+_pkgname=python-proton-keyring-linux
+pkgname=python-proton-keyring-linux-nognome
+pkgver=0.2.1
+pkgrel=1
+pkgdesc="The proton-keyring-linux component (patched to remove gnome-keyring dependency)."
+arch=(any)
+url="https://github.com/ProtonVPN/python-proton-keyring-linux"
+license=(GPL-3.0-or-later)
+depends=(
+  python
+  python-keyring
+  python-proton-core
+  org.freedesktop.secrets
+)
+makedepends=(
+  git
+  python-build
+  python-installer
+  python-setuptools
+  python-wheel
+)
+provides=('python-proton-keyring-linux')
+conflicts=('python-proton-keyring-linux')
+source=("git+https://github.com/ProtonVPN/${_pkgname}.git#tag=v${pkgver}")
+sha256sums=('SKIP')
+
+build() {
+  cd "$_pkgname"
+  python -m build --wheel --no-isolation
+}
+
+package() {
+  cd "$_pkgname"
+  python -m installer --destdir="$pkgdir" dist/*.whl
+}
