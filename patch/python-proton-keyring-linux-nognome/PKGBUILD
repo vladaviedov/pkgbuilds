@@ -4,7 +4,7 @@
 
 _pkgname=python-proton-keyring-linux
 pkgname=python-proton-keyring-linux-nognome
-pkgver=0.2.1
+pkgver=0.2.3
 pkgrel=1
 pkgdesc="The proton-keyring-linux component (patched to remove gnome-keyring dependency)."
 arch=(any)
@@ -26,7 +26,7 @@ makedepends=(
 provides=('python-proton-keyring-linux')
 conflicts=('python-proton-keyring-linux')
 source=("git+https://github.com/ProtonVPN/${_pkgname}.git#tag=v${pkgver}")
-sha256sums=('SKIP')
+sha256sums=('9d81b19c47e3da0363bfdf36e9e7312458538bcb4454dde3f6b5570f24052d93')
 
 build() {
   cd "$_pkgname"
