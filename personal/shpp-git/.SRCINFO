@@ -1,0 +1,13 @@
+pkgbase = shpp-git
+	pkgdesc = Static HTML Pre-Processor (dev)
+	pkgver = r103.83cdbfa
+	pkgrel = 1
+	url = https://github.com/vladaviedov/shpp
+	arch = x86_64
+	license = GPL-3.0-only
+	makedepends = git
+	makedepends = go
+	source = shpp-git::git+https://github.com/vladaviedov/shpp.git
+	sha256sums = SKIP
+
+pkgname = shpp-git

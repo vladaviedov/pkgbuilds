@@ -1,7 +1,7 @@
 # This PKGBUILD is not published to the AUR
 # Maintainer: Vladyslav Aviedov <vladaviedov at protonmail dot com>
-pkgname=shpp-git
-pkgver=r122.11cae45
+pkgname=shpp
+pkgver=0.9.0
 pkgrel=1
 pkgdesc="Static HTML Pre-Processor (dev)"
 arch=('x86_64')
@@ -9,17 +9,12 @@ url='https://github.com/vladaviedov/shpp'
 license=('GPL-3.0-only')
 depends=()
 makedepends=('git' 'go')
-source=("${pkgname}::git+https://github.com/vladaviedov/shpp.git")
+source=("${pkgname}::git+https://github.com/vladaviedov/shpp.git#tag=${pkgver}")
 sha256sums=('SKIP')
 
 prepare() {
 	cd "${pkgname}"
 	go get ./src
-}
-
-pkgver() {
-	cd "${pkgname}"
-	printf "r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
 }
 
 build() {
