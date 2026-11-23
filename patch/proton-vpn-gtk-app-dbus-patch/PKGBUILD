@@ -1,0 +1,68 @@
+# Maintainer: Vladyslav Aviedov <aur at vladaviedov dot org>
+# Contributor: Peter Jung <ptr1337@archlinux.org>
+# Contributor: Ali Molaei <ali dot molaei at protonmail dot com>
+
+_pkgname=proton-vpn-gtk-app
+pkgname=proton-vpn-gtk-app-dbus-patch
+pkgver=4.19.1
+pkgrel=1
+pkgdesc="ProtonVPN GTK app, Maintained by Community (systray dbus fix)"
+arch=(any)
+url="https://github.com/ProtonVPN/proton-vpn-gtk-app"
+license=(GPL-3.0-or-later)
+depends=(
+  glib2
+  pango
+  gtk4
+  libnotify
+  gdk-pixbuf2
+  python
+  python-cairo
+  python-dbus
+  python-distro
+  python-gobject
+  python-packaging
+  proton-vpn-daemon
+  python-proton-core
+  python-proton-keyring-linux
+  'python-proton-vpn-api-core>=6.0.0'
+  python-requests
+)
+makedepends=(
+  git
+  python-build
+  python-installer
+  python-setuptools
+  python-wheel
+)
+source=(
+  "git+https://github.com/ProtonVPN/proton-vpn-gtk-app.git#tag=v${pkgver}"
+  0001-fix-tray-type-dbusmenu-layout-children-as-av.patch
+)
+sha256sums=(
+  '22f0c6f41db1e5c03933d0ba7d37c5901f23502dcdf860a7e2a3cc8c8d60e7b2'
+  'fb2339bbe49796ea8807ec89a7953ea297c4f76d0c04c166fdfb1c8ff412271a'
+)
+provides=('proton-vpn-gtk-app')
+conflicts=('proton-vpn-gtk-app')
+
+prepare() {
+  cd "$_pkgname"
+}
+
+build() {
+  cd "$_pkgname"
+  patch -Np1 -i ../0001-fix-tray-type-dbusmenu-layout-children-as-av.patch
+  python -m build --wheel --no-isolation
+}
+
+package() {
+  cd "$_pkgname"
+  python -m installer --destdir="$pkgdir" dist/*.whl
+  install -d -m755 "${pkgdir}/usr/share/applications"
+  install -d -m755 "${pkgdir}/usr/share/icons/hicolor/scalable/apps/"
+
+  cp ./rpmbuild/SOURCES/proton.vpn.app.gtk.desktop "${pkgdir}/usr/share/applications/proton.vpn.app.gtk.desktop"
+  cp ./rpmbuild/SOURCES/proton-vpn-logo.svg "${pkgdir}/usr/share/icons/hicolor/scalable/apps/"
+  cp ./proton/vpn/app/gtk/assets/icons/proton-vpn-sign.svg "${pkgdir}/usr/share/icons/hicolor/scalable/apps/"
+}

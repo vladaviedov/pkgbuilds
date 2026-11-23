@@ -1,0 +1,36 @@
+pkgbase = proton-vpn-gtk-app-dbus-patch
+	pkgdesc = ProtonVPN GTK app, Maintained by Community (systray dbus fix)
+	pkgver = 4.19.1
+	pkgrel = 1
+	url = https://github.com/ProtonVPN/proton-vpn-gtk-app
+	arch = any
+	license = GPL-3.0-or-later
+	makedepends = git
+	makedepends = python-build
+	makedepends = python-installer
+	makedepends = python-setuptools
+	makedepends = python-wheel
+	depends = glib2
+	depends = pango
+	depends = gtk4
+	depends = libnotify
+	depends = gdk-pixbuf2
+	depends = python
+	depends = python-cairo
+	depends = python-dbus
+	depends = python-distro
+	depends = python-gobject
+	depends = python-packaging
+	depends = proton-vpn-daemon
+	depends = python-proton-core
+	depends = python-proton-keyring-linux
+	depends = python-proton-vpn-api-core>=6.0.0
+	depends = python-requests
+	provides = proton-vpn-gtk-app
+	conflicts = proton-vpn-gtk-app
+	source = git+https://github.com/ProtonVPN/proton-vpn-gtk-app.git#tag=v4.19.1
+	source = 0001-fix-tray-type-dbusmenu-layout-children-as-av.patch
+	sha256sums = 22f0c6f41db1e5c03933d0ba7d37c5901f23502dcdf860a7e2a3cc8c8d60e7b2
+	sha256sums = fb2339bbe49796ea8807ec89a7953ea297c4f76d0c04c166fdfb1c8ff412271a
+
+pkgname = proton-vpn-gtk-app-dbus-patch
